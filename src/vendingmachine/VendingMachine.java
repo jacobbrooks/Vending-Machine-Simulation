@@ -119,6 +119,22 @@ public class VendingMachine {
 				while(thisMany > coinCounts[i]){
 					thisMany--;
 				}
+
+				/*
+					Meaning of the nested if-condition below:
+					Protect against unwarranted exception in the
+					case where machine is out of nickels, but you CAN
+					still make change.
+					How:
+					Don't use as many quarters as possible if 
+					value is not divisible by quarters and not 
+					divisible by dimes, instead, use one less 
+					quarter and fill in the rest with dimes.
+					For instance: A quarter goes into 105 4 times, but if
+					there are no nickels, and only dimes left, you can't make
+					105 with the 4 quarters, so instead use 3 quarters, then you
+					can make 105 by adding 3 dimes: 3Q + 3D = 105.
+				*/
 				if(value % 10 != 0 && value % 25 != 0){ 
 					if(dimes != 0){
 						if(i == 0){
@@ -126,6 +142,7 @@ public class VendingMachine {
 						}
 					}
 				}
+
 				for(int j = 0; j < thisMany; j++){
 					output += stringVals[i] + ",";
 				}
