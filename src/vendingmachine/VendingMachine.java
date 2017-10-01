@@ -6,7 +6,7 @@ public class VendingMachine {
 	private int dimes;
 	private int nickels;
 	private int value;
-	private boolean cancle;
+	private boolean cancel;
 	private Random r;
 	private Scanner scanner;
 	
@@ -14,10 +14,10 @@ public class VendingMachine {
 		r = new Random();
 		scanner = new Scanner(System.in);
 		quarters = r.nextInt(coinCountBound);
-		nickels = r.nextInt(coinCountBound);
 		dimes = r.nextInt(coinCountBound);
+		nickels = r.nextInt(coinCountBound);
 		value = 0;
-		cancle = false;
+		cancel = false;
 	}
 
 	public void start(){
@@ -43,7 +43,7 @@ public class VendingMachine {
 		System.out.println("||Current State||");
 		System.out.println("-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-");
 		System.out.println(quarters + " Quarters, " + dimes + " Dimes, " + nickels + " Nickels");
-		System.out.println("Cancle = " + cancle + ", Value = " + value);
+		System.out.println("Cancel = " + cancel + ", Value = " + value);
 		System.out.println("-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-");
 	}
 
@@ -54,8 +54,8 @@ public class VendingMachine {
 	}
 
 	private void delta(String s){
-		if(cancle){
-			cancle = false;
+		if(cancel){
+			cancel = false;
 			if(value > 0){
 				decrementCoins();
 			}
@@ -74,7 +74,7 @@ public class VendingMachine {
 				nickels++;
 				value += 5;
 			}else if(s.charAt(i) == 'c'){
-				cancle = true;
+				cancel = true;
 			}else if(s.charAt(i) != 'w'){
 				System.out.println("'" + s.charAt(i) + "' is not a valid input");
 			}
@@ -82,7 +82,7 @@ public class VendingMachine {
 	}
 
 	private String lambda(){
-		if(cancle){
+		if(cancel){
 			if(value > 0){
 				String change = makeChange();
 				return change;
@@ -118,6 +118,11 @@ public class VendingMachine {
 				int thisMany = (leftOver - remainder) / coinVals[i];
 				while(thisMany > coinCounts[i]){
 					thisMany--;
+				}
+				if(value % 10 != 0 && value % 25 != 0){ 
+					if(i == 0){
+						thisMany--;
+					}
 				}
 				for(int j = 0; j < thisMany; j++){
 					output += stringVals[i] + ",";
