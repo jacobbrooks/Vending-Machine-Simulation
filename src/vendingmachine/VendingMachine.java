@@ -13,9 +13,9 @@ public class VendingMachine {
 	public VendingMachine(int coinCountBound){
 		r = new Random();
 		scanner = new Scanner(System.in);
-		quarters = 3;//r.nextInt(coinCountBound);
-		dimes = 3;//r.nextInt(coinCountBound);
-		nickels = 0;//r.nextInt(coinCountBound);
+		quarters = r.nextInt(coinCountBound);
+		dimes = r.nextInt(coinCountBound);
+		nickels = r.nextInt(coinCountBound);
 		value = 0;
 		cancel = false;
 	}
