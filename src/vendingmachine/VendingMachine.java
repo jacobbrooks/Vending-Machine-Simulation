@@ -14,8 +14,8 @@ public class VendingMachine {
 		r = new Random();
 		scanner = new Scanner(System.in);
 		quarters = 3;//r.nextInt(coinCountBound);
-		dimes = 0;//r.nextInt(coinCountBound);
-		nickels = 3;//r.nextInt(coinCountBound);
+		dimes = 3;//r.nextInt(coinCountBound);
+		nickels = 0;//r.nextInt(coinCountBound);
 		value = 0;
 		cancel = false;
 	}
@@ -130,7 +130,7 @@ public class VendingMachine {
 					output += stringVals[i] + ",";
 				}
 				leftOver -= coinVals[i] * thisMany;
-				if(value - leftOver == 0){
+				if(leftOver == 0){
 					break;
 				}
 			}
